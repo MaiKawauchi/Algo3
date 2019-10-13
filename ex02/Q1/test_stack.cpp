@@ -21,11 +21,10 @@ int main(void) {
   else std::cout << "Stack is not empty." << std::endl;
 
   assert(stack.full() == false); // stack.full()は、falseでなければならない
-
   int i = 39;
   while (!stack.empty()) {
     int element = stack.top();
-     assert(element == i); //elementは、iでなければならない
+    assert(element == i); // elementは、iでなければならない
     stack.pop();
     i = i - 1;
   }
