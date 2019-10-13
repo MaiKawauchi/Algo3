@@ -6,7 +6,7 @@
 bool Stack::empty()
 {
   //std::cout << _top << std::endl;
-  if(_top <= 0) return true;
+  if(_top < 0) return true;
   else return false;
 }
 
@@ -20,16 +20,15 @@ bool Stack::full()
 // return the number of elements
 int Stack::size()
 {
-  return _top;
+  return _top + 1;
 }
 
 // insert element on top
 // print an error message on std::cerr when overflow
 void Stack::push(int n)
 {
-  if(_top == sizeof(_data) / sizeof(_data[0]) - 1){
-    //std::cout << n << std::endl;
-    ++_top;
+  if(_top == _max_size){
+    std::cout << "Error : Stack is full!" << std::endl;
   }else{
     _data[++_top] = n;
   }
@@ -39,8 +38,8 @@ void Stack::push(int n)
 // print an error message on std::cerr when underflow
 void Stack::pop()
 {
-  if(_top == 0){
-    std::cout << "Error : Stack is EMPTY!" << std::endl;
+  if(_top < 0){
+    std::cout << "Error : Stack is empty!" << std::endl;
   }else{
     --_top;
   }
