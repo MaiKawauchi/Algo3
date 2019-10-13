@@ -65,7 +65,7 @@ int main(void)
   std::cout << std::endl;
 
   // 13. delete the previously allocated memory
-  delete(f);
+  delete[]f;
 
 
 
