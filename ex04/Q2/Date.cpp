@@ -1,8 +1,9 @@
 #include <iostream>
 #include "Date.h"
 
+/*--------------------------------Way1-------------------------------------- */
 // month, date, year
-void Date::set(int m, int d, int y)
+void Date::set(const int m, const int d, const int y)
 {
   month = m;
   day = d;
@@ -10,7 +11,7 @@ void Date::set(int m, int d, int y)
 }
 
 // date stored in the object
-void Date::print()
+const void Date::print()
 {
   std::cout << "MONTH: " << month
             << ", DAY: " << day
@@ -32,4 +33,22 @@ inline const int Date::get_year()
 {
   return year;
 }
+/*-------------------------------------------------------------------------- */
 
+
+/*---------------------------------Way2------------------------------------- */
+void Date2::set(int m, int d, int y)
+{
+  month = m;
+  day = d;
+  year = y;
+}
+
+void Date2::print()
+{
+  std::cout << "MONTH: " << month
+            << ", DAY: " << day
+            << ", YEAR: " << year << std::endl;
+}
+
+/*-------------------------------------------------------------------------- */
