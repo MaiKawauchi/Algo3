@@ -37,14 +37,14 @@ inline const int Date::get_year()
 
 
 /*---------------------------------Way2------------------------------------- */
-void Date2::set(int m, int d, int y)
+void Date2::set(const int m, const int d, const int y)
 {
   month = m;
   day = d;
   year = y;
 }
 
-void Date2::print()
+const void Date2::print()
 {
   std::cout << "MONTH: " << month
             << ", DAY: " << day
