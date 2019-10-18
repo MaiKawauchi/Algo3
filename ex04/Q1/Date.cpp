@@ -10,7 +10,7 @@ void Date::set(const int m, const int d, const int y)
 }
 
 // date stored in the object
-const void Date::print()
+void Date::print()
 {
   std::cout << "MONTH : " << month
             << ", DAY : " << day
@@ -18,18 +18,8 @@ const void Date::print()
 }
 
 // return respectively the month, the day and the year stored in a Date object
-const int Date::get_month()
-{
-  return month;
-}
-
-const int Date::get_day()
-{
-  return day;
-}
-
-const int Date::get_year()
-{
-  return year;
-}
-
+/*
+int Date::get_month() const{}
+int Date::get_day() const{}
+int Date::get_year() const{}
+*/
