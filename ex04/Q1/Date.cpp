@@ -18,8 +18,8 @@ void Date::print()
 }
 
 // return respectively the month, the day and the year stored in a Date object
-/*
-int Date::get_month() const{}
-int Date::get_day() const{}
-int Date::get_year() const{}
-*/
+
+int Date::get_month() const{return month;}
+int Date::get_day() const{return day;}
+int Date::get_year() const{return year;}
+

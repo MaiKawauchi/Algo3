@@ -18,21 +18,9 @@ const void Date::print()
             << ", YEAR: " << year << std::endl;
 }
 
-// return respectively the month, the day and the year stored in a Date object
-inline const int Date::get_month()
-{
-  return month;
-}
-
-inline const int Date::get_day()
-{
-  return day;
-}
-
-inline const int Date::get_year()
-{
-  return year;
-}
+inline int Date::get_month() const{return month;}
+inline int Date::get_day() const{return day;}
+inline int Date::get_year() const{return year;}
 /*-------------------------------------------------------------------------- */
 
 
@@ -50,5 +38,4 @@ const void Date2::print()
             << ", DAY: " << day
             << ", YEAR: " << year << std::endl;
 }
-
 /*-------------------------------------------------------------------------- */
