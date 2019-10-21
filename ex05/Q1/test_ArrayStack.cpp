@@ -10,6 +10,10 @@ int main(void)
   /*------------------------------------------------------------*/
   ArrayStack stack1;
   for(int i=1; i<=5; i++) stack1.push(i);
+  while(stack1.empty() != 1 ){
+    stack1.pop();
+  }
+
 
   /*------------------------------------------------------------*/
   /* stack2という名前のArrayStackの別のインスタンスを作成します */
@@ -17,8 +21,11 @@ int main(void)
   /* このスタックで1,2、...、10をプッシュ                       */
   /*------------------------------------------------------------*/
 
-  ArrayStack stack2;
+  ArrayStack stack2(5);
   for(int i=1; i<=10; i++) stack2.push(i);
+  while(stack2.empty() != 1 ){
+    stack2.pop();
+  }
 
 
 return 0;
