@@ -33,12 +33,19 @@ public:
   _num_items = 0;
   _allocated_size = 0;
   _items = nullptr;
+  /*
+  ArrayStack(const ArrayStack& another_a)
+    {
+    _items = new int;
+    *_items = *another_a.a;}
+    */
   }
-
   explicit ArrayStack(int allocated_size) : _items(new int[allocated_size])
   {
     _num_items = 0;
-    _allocated_size = 0;
+    // _allocated_size = 0;
+    //_items = new int;
+    //*_items = allocated_size;
   }
 
   // Destructor::
