@@ -30,6 +30,7 @@ public:
   // Constructors:
   ArrayStack()
   {
+<<<<<<< HEAD
     _num_items = 0;
     _allocated_size = 0;
     _items = nullptr;
@@ -70,11 +71,39 @@ public:
   {
     _num_items = 0;
     _allocated_size = allocated_size;
+=======
+  _num_items = 0;
+  _allocated_size = 0;
+  _items = nullptr;
+  /*
+  ArrayStack(const ArrayStack& another_a)
+    {
+    _items = new int;
+    *_items = *another_a.a;}
+    */
+  }
+  explicit ArrayStack(int allocated_size) : _items(new int[allocated_size])
+  {
+    _num_items = 0;
+    // _allocated_size = 0;
+    //_items = new int;
+    //*_items = allocated_size;
+  }
+
+  // Destructor::
+  ~ArrayStack() {
+    // COMPLETE
+    delete[] _items;
+>>>>>>> origin/master
   }
 
   void push(int item) {
     if (_num_items == _allocated_size) resize(2 * _allocated_size);
     _items[_num_items++] = item;
+<<<<<<< HEAD
+=======
+    //    std::cout << item << std::endl;
+>>>>>>> origin/master
   }
 
   int pop() {
@@ -87,6 +116,10 @@ public:
   bool empty() const { return _num_items == 0; }
 
   int size() const { return _num_items; }
+<<<<<<< HEAD
 }; // class ArrayStack};
+=======
+};
+>>>>>>> origin/master
 
 #endif // ARRAY_STACK_H
