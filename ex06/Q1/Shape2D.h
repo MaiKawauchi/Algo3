@@ -33,7 +33,7 @@ public:
   /* 形状をx方向にtx、y方向にtyだけ変換 */
   virtual void translate(float tx, float ty) = 0;
 
-
+  virtual ~Shape2D(){}
 };
 
 
