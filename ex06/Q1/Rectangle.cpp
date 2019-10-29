@@ -9,8 +9,8 @@ Rectangle::Rectangle(Point2D l, const float w, const float h)
   , height(h){
 }
 
-
 string Rectangle::get_name()const{
+  cout << "Rectangle" << endl;
   return "Rectangle";
 }
 float Rectangle::compute_area()const{
@@ -18,3 +18,5 @@ float Rectangle::compute_area()const{
 }
 void Rectangle::translate(float tx, float ty){
 }
+
+Rectangle::~Rectangle(){}

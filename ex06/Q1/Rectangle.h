@@ -15,6 +15,7 @@ public:
   void translate(float tx, float ty) override;
 
   ~Rectangle();
+
 private:
   Point2D left_corner;
   float width;

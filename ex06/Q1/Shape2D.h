@@ -13,7 +13,6 @@ inline void assertFloat(float x, float y, float eps=1e-5) {
 }
 
 
-
 class Point2D{
 public:
   Point2D(float x, float y)
@@ -34,7 +33,7 @@ public:
   /* 形状をx方向にtx、y方向にtyだけ変換 */
   virtual void translate(float tx, float ty) = 0;
 
-  virtual ~Shape2D();
+
 };
 
 

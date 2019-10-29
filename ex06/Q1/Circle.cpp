@@ -1,8 +1,8 @@
 #include <iostream>
 #include "Circle.h"
-#include "test_Shape2D.cpp"
 
 using namespace std;
+extern const float PI;
 
 Circle::Circle(Point2D c, float r)
   : center(c)
@@ -10,6 +10,7 @@ Circle::Circle(Point2D c, float r)
 }
 
 string Circle::get_name()const{
+  cout << "Circle" << endl;
   return "Circle";
 }
 float Circle::compute_area()const{
@@ -17,3 +18,5 @@ float Circle::compute_area()const{
 }
 void Circle::translate(float tx, float ty){
 }
+
+Circle::~Circle(){}

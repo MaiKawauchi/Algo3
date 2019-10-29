@@ -4,7 +4,7 @@
 #include "Circle.h"
 
 
-const float PI = 3.141593f;
+extern const float PI = 3.141593f;
 
 int main(void) {
   const int NUM_SHAPES = 2;
@@ -25,6 +25,8 @@ int main(void) {
    assertFloat(shapes[1]->compute_area(), 8.0);
 
    // COMPLETE free memory for shapes
+   //   delete shapes[0];
+   //   delete shapes[1];
 
 
    return 0;
