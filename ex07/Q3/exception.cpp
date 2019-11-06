@@ -42,26 +42,8 @@ void doSomeComputation() {
 
 void example() {
   File_ptr logfile("logfile.txt", "w+");
-
-  try{
-    if (!logfile) {
-      throw std::runtime_error("failed to open file");
-    }
-    fputs("log1", logfile);
-  }
-  catch(const std::runtime_error& error){
-    cout << error.what() << endl;
-    fclose(logfile);
-    throw;
-  }
-  try{
-    doSomeComputation();
-  }catch(...){}
-
-  /*------------------------------------------------*/
-  cout << "closing logfile" << endl;
-  fclose(logfile);
-  /*------------------------------------------------*/
+  fputs("log1", logfile);
+  doSomeComputation();
 }
 
 
