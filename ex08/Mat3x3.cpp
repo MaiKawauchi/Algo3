@@ -83,13 +83,18 @@ for(int i=0; i<MAT_SIZE; ++i){
 
 /*-------------------- 複合乗算 -------------------- */
 Mat3x3& Mat3x3::operator*= (const Mat3x3 &mat){
+  Mat3x3 c = *this;
 for(int i=0; i<MAT_SIZE; ++i){
   for(int j=0; j<MAT_SIZE; ++j){
-    dat[i][j] = dat[i][j] * mat.dat[i][j];
+    dat[i][j] = 0.0;
+    for (int k=0; k<MAT_SIZE; ++k) {
+      dat[i][j] += c.dat[i][k] * mat.dat[k][j];
+    }
   }
  }
  return *this;
 }
+
 
 /*------------------- 単項マイナス ------------------- */
 // B = -A
