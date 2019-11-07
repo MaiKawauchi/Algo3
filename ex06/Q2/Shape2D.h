@@ -15,6 +15,9 @@ inline void assertFloat(float x, float y, float eps=1e-5) {
 
 class Point2D{
 public:
+
+  // constructor
+  Point2D(){}
   Point2D(float x, float y)
     : x(x)
     , y(y){
@@ -25,6 +28,11 @@ public:
   // Pi = (x_i,y_i)
   float x_i[99];
   float y_i[99];
+
+  Point2D* vertices;
+
+  // destructor
+  ~Point2D(){}
 };
 
 

@@ -8,8 +8,10 @@ using namespace std;
 
 class Rectangle : public Shape2D{
 public:
+  // constructor
   Rectangle();
   Rectangle(Point2D left_corner, const float width, const float height);
+
   string get_name()const override;
   float compute_area()const override;
   void translate(float tx, float ty) override;
