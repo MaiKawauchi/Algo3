@@ -13,6 +13,7 @@ using namespace std;
 template<typename T, int N>
 class Mat_NxN{
 public:
+
   // defoult constructor
   Mat_NxN(){
     for(int i=0; i<N; ++i){
@@ -22,9 +23,6 @@ public:
       }
     }
   }
-
-  // copy constructor(one argument)
-  Mat_NxN(const Mat_NxN& mat);
 
    // double NxN constructor
   Mat_NxN(const T coefficients[N][N]){
@@ -38,28 +36,29 @@ public:
   // destructor
   ~Mat_NxN(){}
 
-  /*------------------- 代入演算子 ------------------- */
-  Mat_NxN& operator= (const Mat_NxN& mat) &{
+  /*
+    ------------------- 代入演算子 -------------------
+    Mat_NxN& operator= (const Mat_NxN& mat) &{
     for(int i = 0; i < N; ++i){
-      for(int j = 0; j < N; ++j){
-        dat[i][j] = mat.dat[i][j];
-      }
+    for(int j = 0; j < N; ++j){
+    dat[i][j] = mat.dat[i][j];
+    }
     }
     return *this;
-  }
-   /*----------------- move代入演算子 ----------------- */
-  Mat_NxN& operator= (Mat_NxN&& mat) & noexcept{
+    }
+    ----------------- move代入演算子 -----------------
+    Mat_NxN& operator= (Mat_NxN&& mat) & noexcept{
     for(int i = 0; i < N; ++i){
-      for(int j = 0; j < N; ++j){
-        dat[i][j] = std::move(mat.dat[i][j]);
-      }
+    for(int j = 0; j < N; ++j){
+    dat[i][j] = std::move(mat.dat[i][j]);
+    }
     }
     return *this;
-  }
+    }
+  */
 
   T& operator() (int i, int j) { return dat[i][j]; }      // a(0, 0) == 1
   T operator() (int i, int j) const { return dat[i][j]; } // a(0, 0) == 1
-
 
   /*-------------------- 複合演算子 -------------------- */
   /*-------------------- 複合加算 -------------------- */
@@ -83,19 +82,21 @@ public:
   /*-------------------- 複合乗算 -------------------- */
   Mat_NxN& operator*= (const Mat_NxN& mat){
     Mat_NxN c = *this;
+    int DAT[N][N];
     for(int i=0; i<N; ++i){
       for(int j=0; j<N; ++j){
-        dat[i][j] = 0.0;
+        DAT[i][j] = 0.0;
         for (int k=0; k<N; ++k) {
-          dat[i][j] += c.dat[i][k] * mat.dat[k][j];
+          DAT[i][j] += c.dat[i][k] * mat.dat[k][j];
         }
+        dat[i][j] = DAT[i][j];
       }
     }
     return *this;
   }
 
   // 行列の定数倍(Mat_NxN型の引数をとらない)
-  Mat_NxN& operator*= (T scale);
+  Mat_NxN& operator*= (T scale){}
 
 
   /*------------------- 単項マイナス ------------------- */
