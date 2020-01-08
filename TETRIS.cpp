@@ -44,15 +44,13 @@ char minoShapes[MINO_TYPE_MAX][MINO_ANGLE_MAX][MINO_HEIGHT][MINO_WIDTH] = {
 			0 ,1 ,0, 0,
 			0, 1, 0, 0
 		},
-
 		//MINO_ANGLE_90,
 		{
 			0, 0, 0, 0,
 			0, 0, 0, 0,
-			0, 0, 0, 0,
-			1, 1 ,1, 1
+			1, 1 ,1, 1,
+			0, 0, 0, 0
 		},
-	
 		//MINO_ANGLE_180,
 		{
 			0, 1, 0, 0,
@@ -60,33 +58,216 @@ char minoShapes[MINO_TYPE_MAX][MINO_ANGLE_MAX][MINO_HEIGHT][MINO_WIDTH] = {
 			0 ,1 ,0, 0,
 			0, 1, 0, 0
 		},
-
 		//MINO_ANGLE_270,
 		{
 			0, 0, 0, 0,
 			0, 0, 0, 0,
-			0, 0, 0, 0,
-			1, 1 ,1, 1
+			1, 1 ,1, 1,
+			0, 0, 0, 0
 		}
-		//MINO_ANGLE_MAX
 	},
 
 	//MINO_TYPE_O,
+	{
+		//MINO_ANGLE_0,
+		{
+			0, 0, 0, 0,
+			0, 1, 1, 0,
+			0, 1, 1, 0,
+			0, 0, 0, 0
+		},
+		//MINO_ANGLE_90,
+		{
+			0, 0, 0, 0,
+			0, 1, 1, 0,
+			0, 1, 1, 0,
+			0, 0, 0, 0
+		},
+		//MINO_ANGLE_180,
+		{
+			0, 0, 0, 0,
+			0, 1, 1, 0,
+			0, 1, 1, 0,
+			0, 0, 0, 0
+		},
+		//MINO_ANGLE_270,
+		{
+			0, 0, 0, 0,
+			0, 1, 1, 0,
+			0, 1, 1, 0,
+			0, 0, 0, 0
+		}
+	},
+
 	//MINO_TYPE_S,
+	{
+		//MINO_ANGLE_0,
+		{
+			0, 1, 1, 0,
+			1, 1, 0, 0,
+			0, 0, 0, 0, 
+			0, 0, 0, 0
+		},
+		//MINO_ANGLE_90,
+		{
+			0, 1, 0, 0,
+			0, 1, 1, 0,
+			0, 0, 1, 0,
+			0, 0, 0, 0
+		},
+		//MINO_ANGLE_180,
+		{
+			0, 0, 0, 0,
+			0, 1, 1, 0,
+			1, 1, 0, 0,
+			0, 0, 0, 0
+		},
+		//MINO_ANGLE_270,
+		{
+			1, 0, 0, 0,
+			1, 1, 0, 0,
+			0, 1, 0, 0,
+			0, 0, 0, 0
+		}
+	},
+
 	//MINO_TYPE_Z,
+	{
+		//MINO_ANGLE_0,
+		{
+			1, 1, 0, 0,
+			0, 1, 1, 0,
+			0, 0, 0, 0,
+			0, 0, 0, 0
+		},
+		//MINO_ANGLE_90,
+		{
+			0, 0, 1, 0,
+			0, 1, 1, 0,
+			0, 1, 0, 0,
+			0, 0, 0, 0
+		},
+		//MINO_ANGLE_180,
+		{
+			0, 0, 0, 0,
+			1, 1, 0, 0,
+			0, 1, 1, 0,
+			0, 0, 0, 0
+		},
+		//MINO_ANGLE_270,
+		{
+			0, 1, 0, 0,
+			1, 1, 0, 0,
+			1, 0, 0, 0,
+			0, 0, 0, 0
+		}
+	},
+
 	//MINO_TYPE_J,
+	{
+		//MINO_ANGLE_0,
+		{
+			0, 0, 1, 0,
+			1, 1, 1, 0,
+			0, 0, 0, 0,
+			0, 0, 0, 0
+		},
+		//MINO_ANGLE_90,
+		{
+			0, 1, 0, 0,
+			0, 1, 0, 0,
+			0, 1, 1, 0,
+			0, 0, 0, 0
+		},
+		//MINO_ANGLE_180,
+		{
+			0, 0, 0, 0,
+			1, 1, 1, 0,
+			1, 0, 0, 0,
+			0, 0, 0, 0
+		},
+		//MINO_ANGLE_270,
+		{
+			1, 1, 0, 0,
+			0, 1, 0, 0,
+			0, 1, 0, 0,
+			0, 0, 0, 0
+		}
+	},
+
 	//MINO_TYPE_L,
+	{
+		//MINO_ANGLE_0,
+		{
+			1, 0, 0, 0,
+			1, 1, 1, 0,
+			0, 0, 0, 0,
+			0, 0, 0, 0
+		},
+		//MINO_ANGLE_90,
+		{
+			0, 1, 1, 0,
+			0, 1, 0, 0,
+			0, 1, 0, 0,
+			0, 0, 0, 0
+		},
+		//MINO_ANGLE_180,
+		{
+			0, 0, 0, 0,
+			1, 1, 1, 0,
+			0, 0, 1, 0,
+			0, 0, 0, 0
+		},
+		//MINO_ANGLE_270,
+		{
+			0, 1, 0, 0,
+			0, 1, 0, 0,
+			1, 1, 0, 0,
+			0, 0, 0, 0
+		}
+	},
+
 	//MINO_TYPE_T,
-	//MINO_TYPE_MAX
+	{
+		//MINO_ANGLE_0,
+		{
+			0, 1, 0, 0,
+			1, 1, 1, 0,
+			0, 0, 0, 0,
+			0, 0, 0, 0
+		},
+		//MINO_ANGLE_90,
+		{
+			0, 1, 0, 0,
+			0, 1, 1, 0,
+			0, 1, 0, 0,
+			0, 0, 0, 0
+		},
+		//MINO_ANGLE_180,
+		{
+			0, 0, 0, 0,
+			1, 1, 1, 0,
+			0, 1, 0, 0,
+			0, 0, 0, 0
+		},
+		//MINO_ANGLE_270,
+		{
+			0, 1, 0, 0,
+			1, 1, 0, 0,
+			0, 1, 0, 0,
+			0, 0, 0, 0
+		}
+	},
 };
 
-int minoX = 5; // minoの(左上)初期位置
+int minoX = 5;      // minoの(左上)初期位置
 int minoY = 0;
-int minoTYPE = 0;
+int minoTYPE = 6;
 int minoANGLE = 0;
 
 
-void display() {
+void display() 
+{
 	memcpy(displayBuffer, field, sizeof(field));  // displayの初期化
 
 	for (int i = 0; i < MINO_HEIGHT; ++i) {
@@ -104,10 +285,10 @@ void display() {
 	}
 }
 
-bool isHit(int _minoX, int _minoY, int _minoTYPE, int _minoAngle) {
+bool isHit(int _minoX, int _minoY, int _minoTYPE, int _minoANGLE) {
 	for (int i = 0; i < MINO_HEIGHT; ++i) {
 		for (int j = 0; j < MINO_WIDTH; ++j) {
-			if (minoShapes[minoTYPE][minoANGLE][i][j] && field[_minoY + i][_minoX + j]) {
+			if (minoShapes[_minoTYPE][_minoANGLE][i][j] && field[_minoY + i][_minoX + j]) {
 				return true;
 			}
 		}
@@ -129,27 +310,37 @@ int main()
 	std::time_t  t = time(NULL);
 	while (1) 
 	{
+		/* 1 秒ずつ進める */
+		if (t != time(NULL)) {
+			t = time(NULL);
+
+			if (!isHit(minoX, minoY - 1, minoTYPE, minoANGLE))
+				minoY++;
+
+			display();
+		}
+
 		/* kbhit : 標準入力上にデータが存在する場合は 1 無い場合は 0 を返す */
 		if (_kbhit()) { 
 			switch (_getch()) {
 			//case 'w':
-			case 's':	minoY++;	break; // Down
-			case 'a':	minoX--;	break; // Left
-			case 'd':	minoX++;	break; // Right
-			case 0x20:	minoANGLE = (minoANGLE + 1) % MINO_ANGLE_MAX;
-			}
-		}
-
-		/* 1 秒ずつ進める */
-		if (t != time(NULL)) {
-			t = time(NULL);
-			
-			if (minoY <= 16) {
+			case 's':  // Down
 				minoY++;
+				break; 
+			case 'a':  // Left
+				if ( !isHit(minoX - 1, minoY, minoTYPE, minoANGLE) )
+				minoX--;
+				break;
+			case 'd': // Right
+				if ( !isHit(minoX + 1, minoY, minoTYPE, minoANGLE) )
+				minoX++;	
+				break;
+			case 0x20:
+				if ( !isHit(minoX + 1, minoY, minoTYPE, (minoANGLE + 1) % MINO_ANGLE_MAX) )
+				minoANGLE = (minoANGLE + 1) % MINO_ANGLE_MAX;
+				break;
 			}
-
-			display();
-		}
+		}	
 	}
 
 	
