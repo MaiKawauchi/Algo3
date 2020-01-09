@@ -3,17 +3,19 @@
 #include <cstring>
 #include <utility>
 
+#include <GLFW/glfw3.h>
+
 using namespace std;
 
-#define BOARD 10                  /* ”Õ‚ğ•\‚·”z—ñ board ‚ÌƒTƒCƒY */
-#define AITE(player) (3-(player)) /* player‚Ì‘Šè(“G) */
+#define BOARD 10                  /* ç›¤ã‚’è¡¨ã™é…åˆ— board ã®ã‚µã‚¤ã‚º */
+#define AITE(player) (3-(player)) /* playerã®ç›¸æ‰‹(æ•µ) */
 
 
 /*----------------------------------------------*/
-// EÎ‚ª–³‚¢     0
-// E•Î‚ª‚ ‚é   1
-// E”’Î‚ª‚ ‚é   2
-// E”ÕŠO        -1
+// ãƒ»çŸ³ãŒç„¡ã„     0
+// ãƒ»é»’çŸ³ãŒã‚ã‚‹   1
+// ãƒ»ç™½çŸ³ãŒã‚ã‚‹   2
+// ãƒ»ç›¤å¤–        -1
 /*----------------------------------------------*/
 
 
@@ -62,7 +64,7 @@ void printBoard(int board[BOARD][BOARD])
 	cout << "   -----------------" << endl;
 }
 
-/*---------------------- — •Ô‚·‚±‚Æ‚ª‚Å‚«‚éÎ‚Ì” ----------------------*/
+/*---------------------- è£è¿”ã™ã“ã¨ãŒã§ãã‚‹çŸ³ã®æ•° ----------------------*/
 int countTurnOber(int board[BOARD][BOARD], int player, int p, int q, int d, int e)
 {
 	int i;
@@ -72,17 +74,17 @@ int countTurnOber(int board[BOARD][BOARD], int player, int p, int q, int d, int 
 	else return 0;
 }
 
-/*--------------------- Î‚ğ’u‚¢‚Ä‹²‚ñ‚¾Î‚ğ— •Ô‚· ---------------------*/
+/*--------------------- çŸ³ã‚’ç½®ã„ã¦æŒŸã‚“ã çŸ³ã‚’è£è¿”ã™ ---------------------*/
 void setAndTurnOver(int board[BOARD][BOARD], int player, int p, int q)
 {
 	int count, d, e;
-	for (d = -1; d <= 1; ++d) {      /* ã‰º•ûŒü */
-		for (e = -1; e <= 1; ++e) {  /* ¶‰E•ûŒü */
+	for (d = -1; d <= 1; ++d) {      /* ä¸Šä¸‹æ–¹å‘ */
+		for (e = -1; e <= 1; ++e) {  /* å·¦å³æ–¹å‘ */
 			if (d == 0 && e == 0) continue;
-			/* }d•ûŒüA}e•ûŒü‚É‚¨‚¢‚Ä— •Ô‚·‚±‚Æ‚ª‚Å‚«‚éÎ‚Ì” */
+			/* Â±dæ–¹å‘ã€Â±eæ–¹å‘ã«ãŠã„ã¦è£è¿”ã™ã“ã¨ãŒã§ãã‚‹çŸ³ã®æ•° */
 			count = countTurnOber(board, player, p, q, d, e);
 			
-			/* count‚Ì”‚¾‚¯(p, q)‚©‚ç(d, e)•ûŒü‚É— •Ô‚· */
+			/* countã®æ•°ã ã‘(p, q)ã‹ã‚‰(d, e)æ–¹å‘ã«è£è¿”ã™ */
 			for (int i = 1; i <= count; ++i) {
 				board[p + i * d][q + i * e] = player;
 			}
@@ -92,35 +94,35 @@ void setAndTurnOver(int board[BOARD][BOARD], int player, int p, int q)
 }
 
 
-int isLegalMove(int board[BOARD][BOARD], int player, int p, int q) 
+int isLegalMove(int board[BOARD][BOARD], int player, int* p, int* q) 
 {
-	if (p < 1 || p > 8 || q < 1 || q > 8) return 0;           /* ”Õã‚Å‚È‚¢ @*/
-	if (board[p][q] != 0) return 0;                           /* ‹ó‚¢‚Ä‚¢‚È‚¢ */
-	/* ”ª•ûŒü‚Ì‚¤‚¿‚Ç‚ê‚©ˆê‚Â‚Å‚à— •Ô‚éÎ‚ª‚ ‚ê‚Î‡–@“I‚Èè */
-	if (countTurnOber(board, player, p, q, -1,  0)) return 1; /* ã@ */
-	if (countTurnOber(board, player, p, q,  1,  0)) return 1; /* ‰º@ */
-	if (countTurnOber(board, player, p, q,  0, -1)) return 1; /* ¶@ */
-	if (countTurnOber(board, player, p, q,  0,  1)) return 1; /* ‰E @*/
-	if (countTurnOber(board, player, p, q, -1, -1)) return 1; /* ¶ã */
-	if (countTurnOber(board, player, p, q, -1,  1)) return 1; /* ‰Eã */
-	if (countTurnOber(board, player, p, q,  1, -1)) return 1; /* ¶‰º */
-	if (countTurnOber(board, player, p, q,  1,  1)) return 1; /* ‰E‰º */
+	if (*p < 1 || *p > 8 || *q < 1 || *q > 8) return 0;           /* ç›¤ä¸Šã§ãªã„ ã€€*/
+	if (board[*p][*q] != 0) return 0;                           /* ç©ºã„ã¦ã„ãªã„ */
+	/* å…«æ–¹å‘ã®ã†ã¡ã©ã‚Œã‹ä¸€ã¤ã§ã‚‚è£è¿”ã‚‹çŸ³ãŒã‚ã‚Œã°åˆæ³•çš„ãªæ‰‹ */
+	if (countTurnOber(board, player, *p, *q, -1,  0)) return 1; /* ä¸Šã€€ */
+	if (countTurnOber(board, player, *p, *q,  1,  0)) return 1; /* ä¸‹ã€€ */
+	if (countTurnOber(board, player, *p, *q,  0, -1)) return 1; /* å·¦ã€€ */
+	if (countTurnOber(board, player, *p, *q,  0,  1)) return 1; /* å³ ã€€*/
+	if (countTurnOber(board, player, *p, *q, -1, -1)) return 1; /* å·¦ä¸Š */
+	if (countTurnOber(board, player, *p, *q, -1,  1)) return 1; /* å³ä¸Š */
+	if (countTurnOber(board, player, *p, *q,  1, -1)) return 1; /* å·¦ä¸‹ */
+	if (countTurnOber(board, player, *p, *q,  1,  1)) return 1; /* å³ä¸‹ */
 	return 0;
 }
 
 
-/*---------- player ‚É‚Æ‚Á‚Ä‡–@“I‚Èè‚ªˆê‚Â‚Å‚à‚ ‚ê‚Î 1 ‚ğ•Ô‚· ----------*/
+/*---------- player ã«ã¨ã£ã¦åˆæ³•çš„ãªæ‰‹ãŒä¸€ã¤ã§ã‚‚ã‚ã‚Œã° 1 ã‚’è¿”ã™ ----------*/
 int existLegalMovePlayer(int board[BOARD][BOARD], int player)
 {
 	for (int i = 1; i < BOARD-1; ++i) {
 		for (int j = 1; j < BOARD-1; ++j) {
-			if (isLegalMove(board, player, i, j)) return 1;
+			if (isLegalMove(board, player, &i, &j)) return 1;
 		}
 	}
 	return 0;
 }
 
-/*------------------------ player‚Ìw‚µè‚Ì“ü—Í -------------------------*/
+/*------------------------ playerã®æŒ‡ã—æ‰‹ã®å…¥åŠ› -------------------------*/
 void getMove(int board[BOARD][BOARD], int player, int* p, int* q)
 {
 	char str[4];
@@ -131,27 +133,27 @@ void getMove(int board[BOARD][BOARD], int player, int* p, int* q)
 		cout << " > ";
 		cin >> str[0] >> str[1];
 
-		/* sA—ñ ‚Ì‡‚É“ü—Í‚³‚ê‚½ê‡ */
-		if ((str[0] > 'a' && str[0] < 'h') && (str[1] > '1' && str[1] < '9')) {
-			*q = str[0] - 'a' + 1; // s”Ô†
-			*p = str[1] - '1' + 1; // —ñ”Ô†
-			if (isLegalMove(board, player, *p, *q)) return;
+		/* è¡Œã€åˆ— ã®é †ã«å…¥åŠ›ã•ã‚ŒãŸå ´åˆ */
+		if ((str[0] >= 'a' && str[0] <= 'h') && (str[1] >= '1' && str[1] <= '8')) {
+			*q = str[0] - 'a' + 1; // è¡Œç•ªå·
+			*p = str[1] - '1' + 1; // åˆ—ç•ªå·
+			if (isLegalMove(board, player, p, q)) return;
 			cout << "p = " << *p << " / q = " << *q << endl;
 		}
-		/* —ñAs ‚Ì‡‚É“ü—Í‚³‚ê‚½ê‡ */
+		/* åˆ—ã€è¡Œ ã®é †ã«å…¥åŠ›ã•ã‚ŒãŸå ´åˆ */
 		else if ((str[1] > 'a' && str[1] < 'h') && (str[0] > '1' && str[0] < '9')) {
-			*q = str[1] - 'a' + 1; // s”Ô†
-			*p = str[0] - '1' + 1; // —ñ”Ô†
-			if (isLegalMove(board, player, *p, *q)) return;
+			*q = str[1] - 'a' + 1; // è¡Œç•ªå·
+			*p = str[0] - '1' + 1; // åˆ—ç•ªå·
+			if (isLegalMove(board, player, p, q)) return;
 			cout << "p = " << *p << " / q = " << *q << endl;
 		}
 		
 		cout << "select a legal move : ";
 		for (int i = 1; i < BOARD - 1; ++i) {
 			for (int j = 1; j < BOARD - 1; ++j) {
-				if (isLegalMove(board, player, i, j)) {
-					str[2] = i + 'a' - 1;
-					cout << str[2] << j << " ";
+				if (isLegalMove(board, player, &i, &j)) {
+					str[2] = j + 'a' - 1;
+					cout << str[2] << i << " ";
 				}
 			}
 		}
@@ -177,45 +179,45 @@ void countStone(int board[BOARD][BOARD], int *c1, int *c2)
 int game() 
 {
 	int board[BOARD][BOARD];
-	int c1, c2;                // Î‚Ì”
-	int player;              // ‘Å‚¿è(1 or 2)
-	int p, q;                    // p s q —ñ
+	int c1, c2;                  // çŸ³ã®æ•°
+	int player;                  // æ‰“ã¡æ‰‹(1 or 2)
+	int p, q;                    // p è¡Œ q åˆ—
 
-	/*----- ƒQ[ƒ€”Õ‚Ì‰Šú‰» -----*/
+	/*----- ã‚²ãƒ¼ãƒ ç›¤ã®åˆæœŸåŒ– -----*/
 	initBoard(board);
 	player = 1;
 
-	/*----- ƒQ[ƒ€‚Ìis -----*/
+	/*----- ã‚²ãƒ¼ãƒ ã®é€²è¡Œ -----*/
 	while (1)
 	{
-		/* ‡@ƒQ[ƒ€ó‹µ‚Ì•\¦ */
+		/* â‘ ã‚²ãƒ¼ãƒ çŠ¶æ³ã®è¡¨ç¤º */
 		printBoard(board);
 
-		/* ‡AƒQ[ƒ€‚ÌI—¹”»’f */
-		// ƒvƒŒ[ƒ„[‚É‡–@“Iè‚ª‚È‚¯‚ê‚ÎCƒvƒŒ[ƒ„[Œğ‘ã
+		/* â‘¡ã‚²ãƒ¼ãƒ ã®çµ‚äº†åˆ¤æ–­ */
+		// ãƒ—ãƒ¬ãƒ¼ãƒ¤ãƒ¼ã«åˆæ³•çš„æ‰‹ãŒãªã‘ã‚Œã°ï¼Œãƒ—ãƒ¬ãƒ¼ãƒ¤ãƒ¼äº¤ä»£
 		if (!existLegalMovePlayer(board, player)) {
 			cout << "Player " << player << " has no legal moves > PASS" << endl;
 			player = AITE(player);
 
-			// Œğ‘ã‚µ‚Ä‚à‚È‚¨C‡–@“I‚Èè‚ª‚È‚¯‚ê‚ÎCƒQ[ƒ€I—¹
+			// äº¤ä»£ã—ã¦ã‚‚ãªãŠï¼Œåˆæ³•çš„ãªæ‰‹ãŒãªã‘ã‚Œã°ï¼Œã‚²ãƒ¼ãƒ çµ‚äº†
 			if (!existLegalMovePlayer(board, player)) {
 				cout << "Player " << player << " has no legal moves > PASS" << endl;
 				break;
 			}
 		}
 
-		/* ‡Bw‚µè“ü—Í */
+		/* â‘¢æŒ‡ã—æ‰‹å…¥åŠ› */
 		getMove(board, player, &p, &q);
 
-		/* ‡CƒQ[ƒ€ó‹µ‚ğ•Ï‰»‚³‚¹‚é */
+		/* â‘£ã‚²ãƒ¼ãƒ çŠ¶æ³ã‚’å¤‰åŒ–ã•ã›ã‚‹ */
 		setAndTurnOver(board, player, p, q);
 
-		/* ‡DƒvƒŒƒCƒ„[Œğ‘ã */
+		/* â‘¤ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼äº¤ä»£ */
 		player = AITE(player);
 	}
 
-	/*----- ƒQ[ƒ€‚ÌÅI‹Ç–Ê‚Ì”»’f -----*/
-	/* ƒvƒŒ[ƒ„[‚Ì‘o•û‚É‡–@“I‚Èè‚ª‚È‚­‚È‚Á‚½‚çI—¹ */
+	/*----- ã‚²ãƒ¼ãƒ ã®æœ€çµ‚å±€é¢ã®åˆ¤æ–­ -----*/
+	/* ãƒ—ãƒ¬ãƒ¼ãƒ¤ãƒ¼ã®åŒæ–¹ã«åˆæ³•çš„ãªæ‰‹ãŒãªããªã£ãŸã‚‰çµ‚äº† */
 	countStone(board, &c1, &c2);
 	cout << "Game Over ! " << endl;
 	cout << "Player 1 : " << c1 << " vs Player 2 : " << c2 << endl;
@@ -225,18 +227,50 @@ int game()
 
 int main()
 {
+	/*---------------------------------------------------------------------*/
+	if (glfwInit() == GL_FALSE) {
+		std::cerr << "Can't initialize GLFW" << endl;
+		return 1;
+	}
+	glfwWindowHint(GLFW_SAMPLES, 4);
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+	glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
+	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+
+	GLFWwindow* const window = glfwCreateWindow(640, 480, "Othello", NULL, NULL);
+	if (window == nullptr) {
+		std::cerr << "Can't create GLFW window." << endl;
+		glfwTerminate();
+		return -1;
+	}
+
+	glfwMakeContextCurrent(window);
+	glClearColor(1.0f, 1.0f, 1.0f, 0.0f);
+
+	/* ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’é–‰ã˜ã‚‹ã¾ã§(ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãŒé–‹ã„ã¦ã„ã‚‹é–“)ç¹°ã‚Šè¿”ã—ãŸã„å‡¦ç† */
+	while (glfwWindowShouldClose(window) == GL_FALSE) 
+	{
+		glClear(GL_COLOR_BUFFER_BIT);
+		glfwSwapBuffers(window);
+		glfwWaitEvents();
+	}
+	glfwTerminate();
+	/*---------------------------------------------------------------------*/
+
+
 	cout << "Let's play Othello" << endl;
 
 	int result;
 	result = game();
 	if(result == 0){
-		cout << "ˆø‚«•ª‚¯" << endl;
+		cout << "å¼•ãåˆ†ã‘" << endl;
 	}
 	else if (result >= 0) {
-		cout << "ƒvƒŒƒCƒ„[‚P‚ÌŸ‚¿" << endl;
+		cout << "ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ï¼‘ã®å‹ã¡" << endl;
 	}
 	else {
-		cout << "ƒvƒŒƒCƒ„[‚Q‚ÌŸ‚¿" << endl;
+		cout << "ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ï¼’ã®å‹ã¡" << endl;
 	}
 
 	
